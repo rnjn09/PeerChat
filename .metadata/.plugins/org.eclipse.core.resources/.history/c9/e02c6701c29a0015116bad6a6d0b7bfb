@@ -1,0 +1,37 @@
+/*
+ * This thread handles incoming connections.
+ * @ Ranjan Dhar
+ */
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
+
+public class Gateway extends Thread{
+	
+	private ServerSocket serverSocket;
+	private static final ThreadPoolExecutor executorService = (ThreadPoolExecutor) Executors.newFixedThreadPool(10);
+	private Peer server;
+	
+	//Constructor
+	public Gateway(Peer server, ServerSocket serverSocket){
+		this.server = server;
+		this.serverSocket = serverSocket;
+	}
+	
+	public void run(){
+		try{
+			while(true){
+				if(executorService.getActiveCount() < executorService.getMaximumPoolSize()){
+					Socket socket = serverSocket.accept();
+					PeerWorker client = new PeerWorker(socket, server);
+					GatewayHandler.executorService.execute(client);
+				}
+			}
+		}
+		catch(Exception e){
+			System.out.println(e);
+		}
+	}
+	
+	
