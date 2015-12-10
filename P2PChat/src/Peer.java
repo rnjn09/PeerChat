@@ -20,7 +20,7 @@ public class Peer {
 	//Main method
 	public static void main(String[] args) throws IOException {
 		Peer server = new Peer();
-		GatewayHandler gateWayHandler = new GatewayHandler(server, new ServerSocket(8767));
+		GatewayHandler gateWayHandler = new GatewayHandler(server, new ServerSocket(5949));
 		gateWayHandler.start();
 	}
 	
