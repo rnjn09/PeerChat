@@ -43,8 +43,7 @@ public class Peer {
 		routingInfo.put("gateway_id", nodeId);
 		routingInfo.put("node_id", joinNodeId);
 		routingInfo.put("ip_address", ipAddress);
-		// Iterating through the hash map to construct a routing table
-		
+		//Iterate through the hash map to build routing table
 		JSONArray routeTable = new JSONArray();
 		Iterator<Entry<String, String>> iterator = routingTable.entrySet().iterator();
 		while(iterator.hasNext()){
@@ -55,7 +54,7 @@ public class Peer {
 			routeTable.add(route);
 		}
 		routingInfo.put("route_table", routeTable);
-		// Send routing information back to joining node.
+		//Send routing table back to joining node.
 		communicate(joinIpAddress, JSONValue.toJSONString(routingInfo));
 		
 		
