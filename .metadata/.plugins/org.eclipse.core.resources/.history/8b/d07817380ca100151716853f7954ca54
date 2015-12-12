@@ -29,7 +29,8 @@ public class GatewayHandler extends Thread{
 					GatewayHandler.executorService.execute(client);
 				}
 			
-					}
+					
+				}
 			}
 		
 		catch(Exception e){
@@ -37,7 +38,7 @@ public class GatewayHandler extends Thread{
 		}
 	}
 	
-	// Getters & Setters
+	//Getters & Setters
 	public Peer getServer() {
 		return server;
 	}

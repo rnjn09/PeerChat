@@ -25,19 +25,16 @@ public class GatewayHandler extends Thread{
 			while(true){
 				if(executorService.getActiveCount() < executorService.getMaximumPoolSize()){
 					Socket socket = serverSocket.accept();
-					PeerWorker client = new PeerWorker(socket, server);
-					GatewayHandler.executorService.execute(client);
+					
 				}
-			
-					}
 			}
-		
+		}
 		catch(Exception e){
 			System.out.println(e);
 		}
 	}
 	
-	// Getters & Setters
+	//Getters & Setters
 	public Peer getServer() {
 		return server;
 	}
