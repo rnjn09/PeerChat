@@ -16,6 +16,19 @@ public class Peer {
 	private String ipAddress;
 	private String nodeId;
 	private String pingAck = "";
+	
+	public void communicate(String ipAddress, String message){
+		try{
+			Socket socket = new Socket(ipAddress, 5949);
+			DataOutputStream sendMessage = new DataOutputStream(socket.getOutputStream());
+			sendMessage.writeBytes(message + "\n");
+			sendMessage.close();
+			socket.close();
+			
+		}catch(Exception e){
+			System.out.println("ERROR: Could Open Socket to: " + ipAddress);
+		}
+	}
 
 	//Main method
 	public static void main(String[] args) throws IOException {
