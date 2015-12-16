@@ -41,7 +41,6 @@ public class Peer {
 		routingTable.remove(leavingId);
 	}
 	
-	@SuppressWarnings("unchecked")
 	public void routingInfo(String joinNodeId, String joinIpAddress){
 		Map<String, Serializable> routingInfo = new LinkedHashMap<String, Serializable>();
 		routingInfo.put("type", "ROUTING_INFO");
@@ -77,16 +76,6 @@ public class Peer {
 		}catch(Exception e){
 			System.out.println("ERROR: Could Open Socket to: " + ipAddress);
 		}
-	}
-	
-	public void joinRelay(String joinId, String joinIp){
-		// Create JSON String
-		Map<String, String> relay = new LinkedHashMap<String, String>();
-		relay.put("type", "JOINING_NETWORK_RELAY");
-		relay.put("node_id", joinId);
-		relay.put("ip_address", joinIp);
-		//Send to all nodes in routing table
-		broadcast(JSONValue.toJSONString(relay));
 	}
 	
 	public void chat(String targetId, String message){
@@ -156,13 +145,14 @@ public class Peer {
 		broadcast(JSONValue.toJSONString(leave));
 	}
 
-	    public static void main(String[] args) throws IOException {
+	//Main method
+	public static void main(String[] args) throws IOException {
 		Peer server = new Peer();
 		GatewayHandler gateWayHandler = new GatewayHandler(server, new ServerSocket(5949));
 		gateWayHandler.start();
 	}
 	
-	// Getters & Setters
+	//Getters & Setters
 	public String getIpAddress() {
 		return ipAddress;
 	}

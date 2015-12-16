@@ -28,7 +28,8 @@ public class GatewayHandler extends Thread{
 					PeerWorker client = new PeerWorker(socket, server);
 					GatewayHandler.executorService.execute(client);
 				}
-			  }
+			
+					}
 			}
 		
 		catch(Exception e){

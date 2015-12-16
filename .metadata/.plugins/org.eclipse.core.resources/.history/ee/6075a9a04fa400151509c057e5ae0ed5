@@ -41,7 +41,6 @@ public class Peer {
 		routingTable.remove(leavingId);
 	}
 	
-	@SuppressWarnings("unchecked")
 	public void routingInfo(String joinNodeId, String joinIpAddress){
 		Map<String, Serializable> routingInfo = new LinkedHashMap<String, Serializable>();
 		routingInfo.put("type", "ROUTING_INFO");
@@ -80,7 +79,7 @@ public class Peer {
 	}
 	
 	public void joinRelay(String joinId, String joinIp){
-		// Create JSON String
+		//Create JSON String
 		Map<String, String> relay = new LinkedHashMap<String, String>();
 		relay.put("type", "JOINING_NETWORK_RELAY");
 		relay.put("node_id", joinId);

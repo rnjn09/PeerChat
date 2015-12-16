@@ -10,14 +10,20 @@ import java.io.InputStreamReader;
 import java.net.InetAddress;
 import java.util.LinkedHashMap;
 import java.util.Map;
+
 import org.json.simple.JSONValue;
 
+
+
+
 public class PeerUI extends Thread{
+	
 	
 	private Peer peer;
 	private BufferedReader reader;
 
-	    public PeerUI(Peer peer){
+	//Constructor
+	public PeerUI(Peer peer){
 		this.peer = peer;
 		reader = new BufferedReader(new InputStreamReader(System.in));
 	}
@@ -37,22 +43,27 @@ public class PeerUI extends Thread{
 		return Math.abs(hash);
 	}
 	
-	// Join Network Method.
+	// Allow this node to join the network.
 	
 	public void joinNetwork(){
 		try {
 			System.out.println("Join the network.....");
-			System.out.println("Enter your IP Address");
-			int hash = hashCode(reader.readLine());
-			String nodeId = Integer.toString(hash);
-			System.out.println("Enter Gateway IP Address (Blank for bootstrap node)");
+			
+			 System.out.println("Enter your name");
+			 int hash = hashCode(reader.readLine());
+			 String nodeId = Integer.toString(hash);
+			
+			 /* Manual option of entering the node ID
+			System.out.println("Enter Node ID:");
+			String nodeId = reader.readLine();*/
+			System.out.println("Enter Gateway IP Address (Blank if you're the first node in the network)");
 			String gatewayIp = reader.readLine();
 			Map<String, String> map = new LinkedHashMap<String, String>();
 			map.put("type","JOINING_NETWORK");
 			map.put("node_id", nodeId);
 			map.put("ip_address", InetAddress.getLocalHost().getHostAddress().toString());
 			String jsonText = JSONValue.toJSONString(map);
-			// Initialization 
+			// Initialize own node values
 			peer.setIpAddress(InetAddress.getLocalHost().getHostAddress().toString());
 			peer.setNodeId(nodeId);
 			peer.communicate(gatewayIp, jsonText);
@@ -71,8 +82,7 @@ public class PeerUI extends Thread{
 			System.out.println("Enter Your Message...");
 			String message = reader.readLine();
 			peer.chat(targetId, message);
-		} 
-		 catch(IOException e){
+		} catch(IOException e){
 			e.printStackTrace();
 		}
 	}
@@ -101,13 +111,12 @@ public class PeerUI extends Thread{
 			else{
 				System.out.println(" The target node is dead ");
 			}
-		} 
-		 catch(IOException e){
+		} catch(IOException e){
 			e.printStackTrace();
-		} 
-		 catch (InterruptedException e) {
+		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		
 	}
 	
 	public void leave(){
@@ -141,8 +150,10 @@ public class PeerUI extends Thread{
 				System.out.println("Please enter a valid input");
 			}
 		}
-		catch (IOException e){
+		catch(IOException e){
 			e.printStackTrace();
 		}
 	}
+	
+	
 }

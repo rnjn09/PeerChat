@@ -41,7 +41,6 @@ public class Peer {
 		routingTable.remove(leavingId);
 	}
 	
-	@SuppressWarnings("unchecked")
 	public void routingInfo(String joinNodeId, String joinIpAddress){
 		Map<String, Serializable> routingInfo = new LinkedHashMap<String, Serializable>();
 		routingInfo.put("type", "ROUTING_INFO");

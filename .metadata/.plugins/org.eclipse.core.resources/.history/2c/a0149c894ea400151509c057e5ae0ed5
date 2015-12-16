@@ -71,8 +71,7 @@ public class PeerUI extends Thread{
 			System.out.println("Enter Your Message...");
 			String message = reader.readLine();
 			peer.chat(targetId, message);
-		} 
-		 catch(IOException e){
+		} catch(IOException e){
 			e.printStackTrace();
 		}
 	}
@@ -101,13 +100,12 @@ public class PeerUI extends Thread{
 			else{
 				System.out.println(" The target node is dead ");
 			}
-		} 
-		 catch(IOException e){
+		} catch(IOException e){
 			e.printStackTrace();
-		} 
-		 catch (InterruptedException e) {
+		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		
 	}
 	
 	public void leave(){
@@ -141,7 +139,7 @@ public class PeerUI extends Thread{
 				System.out.println("Please enter a valid input");
 			}
 		}
-		catch (IOException e){
+		catch(IOException e){
 			e.printStackTrace();
 		}
 	}

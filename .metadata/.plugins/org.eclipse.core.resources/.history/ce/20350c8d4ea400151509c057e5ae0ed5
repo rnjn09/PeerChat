@@ -141,7 +141,7 @@ public class PeerUI extends Thread{
 				System.out.println("Please enter a valid input");
 			}
 		}
-		catch (IOException e){
+		catch(IOException e){
 			e.printStackTrace();
 		}
 	}
