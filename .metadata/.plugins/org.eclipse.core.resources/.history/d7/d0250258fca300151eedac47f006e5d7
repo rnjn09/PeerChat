@@ -87,37 +87,6 @@ public class PeerUI extends Thread{
 		}
 	}
 	
-	// Ping Method
-	
-	public void ping(){
-		try{
-			System.out.println("Enter Node ID For Ping");
-			String targetId = reader.readLine();
-			System.out.println("Pinging......");
-			peer.ping(targetId);
-			Boolean ack = false;
-			long startTime = System.currentTimeMillis();
-			while((System.currentTimeMillis()-startTime)<5000){
-				if(peer.getPingAck().equals(targetId)){
-					ack = true;
-					break;
-				}
-				System.out.print(".");
-				Thread.sleep(500);
-			}
-			if(ack == true){
-				System.out.println(" Ping successful. Node available...");
-			}
-			else{
-				System.out.println(" The target node is dead ");
-			}
-		} catch(IOException e){
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		
-	}
 	
 	
 	// Menu
@@ -137,7 +106,7 @@ public class PeerUI extends Thread{
                 peer.printRoutes();
 			}
 			else if(choice.equals("3")){
-			    ping();
+				// ping method
 			}
 			else if(choice.equals("4")){
 				// leave method

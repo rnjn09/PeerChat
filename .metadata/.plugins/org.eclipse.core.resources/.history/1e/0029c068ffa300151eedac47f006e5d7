@@ -80,13 +80,6 @@ public  class PeerWorker implements Runnable, PeerChat{
 								peer.addToRouting(id, ip);
 							}
 							break;
-					    case "CHAT":
-							// Print chat messages 
-							System.out.println("");
-							System.out.println("Message From: " + json.get("sender_id"));
-							System.out.println(json.get("text"));
-							System.out.println("");
-							break;
 			}
 		}
 			}

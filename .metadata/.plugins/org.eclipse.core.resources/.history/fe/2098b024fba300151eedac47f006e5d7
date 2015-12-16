@@ -73,66 +73,6 @@ public class Peer {
 			System.out.println("ERROR: Could Open Socket to: " + ipAddress);
 		}
 	}
-	
-	public void chat(String targetId, String message){
-		// Create the JSON message
-		
-		Map<String, String> chat = new LinkedHashMap<String, String>();
-		chat.put("type", "CHAT");
-		chat.put("target_id", targetId);
-		chat.put("sender_id", nodeId);
-		chat.put("text", message);
-		if(targetId.equals("00")){
-			broadcast(JSONValue.toJSONString(chat));
-		}
-		else{
-			String ip = routingTable.get(targetId);
-			communicate(ip, JSONValue.toJSONString(chat));
-		}
-	}
-	 
-	// Broadcast method
-	public void broadcast(String message){
-		Iterator<Entry<String, String>> iterator = routingTable.entrySet().iterator();
-		while(iterator.hasNext()){
-			communicate(iterator.next().getValue(), message);
-		}
-	}
-	
-	// Routing Table display method
-	public void printRoutes(){
-		Iterator<Entry<String, String>> iterator = routingTable.entrySet().iterator();
-		System.out.println("| ID | IPADDRESS |");
-		while(iterator.hasNext()){
-			System.out.println("|----------------|");
-			Entry<String, String> entry = iterator.next();
-			System.out.println("| " + entry.getKey() + " | " + entry.getValue() + " |");
-			System.out.println("");
-		}
-	}
-	
-	// Ping method
-	public void ping(String targetId){
-		//Create JSON String
-		Map<String, String> ping = new LinkedHashMap<String, String>();
-		ping.put("type", "PING");
-		ping.put("target_id", targetId);
-		ping.put("sender_id", nodeId);
-		ping.put("ip_address", ipAddress);
-		String targetIp = routingTable.get(targetId);
-		communicate(targetIp, JSONValue.toJSONString(ping));
-	}
-	
-	public void sendAck(String targetId){
-		//Create JSON String
-		Map<String, String> ack = new LinkedHashMap<String, String>();
-		ack.put("type", "ACK");
-		ack.put("node_id", nodeId);
-		ack.put("ip_address", ipAddress);
-		String targetIp = routingTable.get(targetId);
-		communicate(targetIp, JSONValue.toJSONString(ack));
-	}
-	
 
 	//Main method
 	public static void main(String[] args) throws IOException {

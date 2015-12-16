@@ -106,10 +106,10 @@ public class PeerUI extends Thread{
 				Thread.sleep(500);
 			}
 			if(ack == true){
-				System.out.println(" Ping successful. Node available...");
+				System.out.println("He's Alive!");
 			}
 			else{
-				System.out.println(" The target node is dead ");
+				System.out.println("He's dead Jim...");
 			}
 		} catch(IOException e){
 			e.printStackTrace();
