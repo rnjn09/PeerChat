@@ -119,6 +119,10 @@ public class PeerUI extends Thread{
 		
 	}
 	
+	public void leave(){
+		peer.leaveNetwork();
+		System.exit(0);
+	}
 	
 	// Menu
 	public void menu(){
@@ -140,7 +144,7 @@ public class PeerUI extends Thread{
 			    ping();
 			}
 			else if(choice.equals("4")){
-				// leave method
+				leave();
 			}
 			else{
 				System.out.println("Please enter a valid input");
