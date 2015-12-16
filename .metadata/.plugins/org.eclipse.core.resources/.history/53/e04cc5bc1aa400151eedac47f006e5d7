@@ -37,10 +37,6 @@ public class Peer {
 		routingTable.put(nodeId, ipAddress);
 	}
 	
-	public void removeFromRouting(String leavingId){
-		routingTable.remove(leavingId);
-	}
-	
 	public void routingInfo(String joinNodeId, String joinIpAddress){
 		Map<String, Serializable> routingInfo = new LinkedHashMap<String, Serializable>();
 		routingInfo.put("type", "ROUTING_INFO");
@@ -137,13 +133,6 @@ public class Peer {
 		communicate(targetIp, JSONValue.toJSONString(ack));
 	}
 	
-	public void leaveNetwork(){
-		Map<String, String> leave = new LinkedHashMap<String, String>();
-		leave.put("type", "LEAVING_NETWORK");
-		leave.put("node_id", nodeId);
-		// Inform all nodes in the routing table
-		broadcast(JSONValue.toJSONString(leave));
-	}
 
 	//Main method
 	public static void main(String[] args) throws IOException {

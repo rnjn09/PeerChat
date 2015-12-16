@@ -2,12 +2,16 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="Server" key="selection"/>
+		<item value="pingAck" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="pingAck"/>
+			<item value="PeerChat"/>
+			<item value="ChatResult"/>
+			<item value="sendAck"/>
 			<item value="server"/>
 			<item value="PEER"/>
 			<item value="PeerUI"/>

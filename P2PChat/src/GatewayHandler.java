@@ -38,7 +38,8 @@ public class GatewayHandler extends Thread{
 	}
 	
 	// Getters & Setters
-	public Peer getServer() {
+	
+    public Peer getServer() {
 		return server;
 	}
 

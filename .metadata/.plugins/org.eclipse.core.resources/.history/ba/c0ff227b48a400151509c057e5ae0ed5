@@ -37,10 +37,6 @@ public class Peer {
 		routingTable.put(nodeId, ipAddress);
 	}
 	
-	public void removeFromRouting(String leavingId){
-		routingTable.remove(leavingId);
-	}
-	
 	public void routingInfo(String joinNodeId, String joinIpAddress){
 		Map<String, Serializable> routingInfo = new LinkedHashMap<String, Serializable>();
 		routingInfo.put("type", "ROUTING_INFO");
