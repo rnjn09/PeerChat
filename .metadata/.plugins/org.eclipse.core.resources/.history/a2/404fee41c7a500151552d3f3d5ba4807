@@ -115,15 +115,6 @@ public  class PeerWorker implements Runnable, PeerChat{
 							String ackId = json.get("node_id").toString();
 							peer.setPingAck(ackId);
 							break;
-							
-					case "ACK_CHAT":
-						break;
-				    
-					case "CHAT_RETRIEVE":
-						break;
-					
-					case "CHAT_RESPONSE":
-						break;
 			}
 		}
 			}
@@ -132,7 +123,9 @@ public  class PeerWorker implements Runnable, PeerChat{
 			catch (Exception e) {
 			e.printStackTrace();
 		}
+	
 	}
+
 }
 	
 

@@ -62,15 +62,13 @@ public class Peer {
 		routingInfo.put("route_table", routeTable);
 		// Send routing information back to joining node.
 		communicate(joinIpAddress, JSONValue.toJSONString(routingInfo));
-		// Sending message to all other nodes to update their routing table
-		joinRelay(joinNodeId, joinIpAddress);
 		
 		
 	}
 	
 	public void communicate(String ipAddress, String message){
 		try{
-			Socket socket = new Socket(ipAddress, 8767);
+			Socket socket = new Socket(ipAddress, 5949);
 			DataOutputStream sendMessage = new DataOutputStream(socket.getOutputStream());
 			sendMessage.writeBytes(message + "\n");
 			sendMessage.close();
@@ -87,7 +85,7 @@ public class Peer {
 		relay.put("type", "JOINING_NETWORK_RELAY");
 		relay.put("node_id", joinId);
 		relay.put("ip_address", joinIp);
-		// Send to all nodes in routing table
+		//Send to all nodes in routing table
 		broadcast(JSONValue.toJSONString(relay));
 	}
 	

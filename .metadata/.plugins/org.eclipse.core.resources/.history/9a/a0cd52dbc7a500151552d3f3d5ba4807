@@ -42,9 +42,9 @@ public class PeerUI extends Thread{
 	public void joinNetwork(){
 		try {
 			System.out.println("Join the network.....");
-			System.out.println("Enter your desired node ID");
-		//	int hash = hashCode(reader.readLine()); Alternate hashing process
-			String nodeId = reader.readLine();
+			System.out.println("Enter your IP Address");
+			int hash = hashCode(reader.readLine());
+			String nodeId = Integer.toString(hash);
 			System.out.println("Enter Gateway IP Address (Blank for bootstrap node)");
 			String gatewayIp = reader.readLine();
 			Map<String, String> map = new LinkedHashMap<String, String>();
@@ -68,7 +68,7 @@ public class PeerUI extends Thread{
 		try{
 			System.out.println("Enter Destination ID (00 for network broadcast)");
 			String targetId = reader.readLine();
-			System.out.println("Enter Your Message.....");
+			System.out.println("Enter Your Message...");
 			String message = reader.readLine();
 			peer.chat(targetId, message);
 		} 
