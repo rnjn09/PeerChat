@@ -1,5 +1,3 @@
-# PeerChat
-Initialization
 # P2P Chat
 @ Ranjan Dhar
 
